@@ -17,6 +17,7 @@ var IASTriggerExtension = function(options) {
   this.enabled = true;
   this.count = 0;
   this.offset = options.offset;
+  this.noneLeft = false;
   this.$triggerNext = null;
   this.$triggerPrev = null;
 
@@ -57,9 +58,17 @@ var IASTriggerExtension = function(options) {
 
     return false;
   };
+  
+  this.onNoneLeft = function() {
+      this.noneLeft = true;
+  };
 
   this.onRendered = function() {
+    if (this.noneLeft) {   
+        return;
+    }
     this.enabled = true;
+    this.showTriggerNext();
   };
 
   /**
@@ -94,6 +103,7 @@ IASTriggerExtension.prototype.bind = function(ias) {
 
   ias.on('next', jQuery.proxy(this.showTriggerNext, this), this.priority);
   ias.on('rendered', jQuery.proxy(this.onRendered, this), this.priority);
+  ias.on('noneLeft', jQuery.proxy(this.onNoneLeft, this), this.priority);
 
   try {
     ias.on('prev', jQuery.proxy(this.showTriggerPrev, this), this.priority);
