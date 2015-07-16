@@ -1,5 +1,5 @@
 {
-  "name": "roro15/jquery-ias",
+  "name": "roro15/jquery-ajax-scroll",
   "replace": {
       "webcreate/jquery-ias": "2.*"
   },
