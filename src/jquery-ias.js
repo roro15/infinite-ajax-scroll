@@ -546,8 +546,9 @@
 
     promise.done(function() {
       self.load(url, function(data, items) {
+        self.nextUrl = self.getNextUrl(data);
         self.render(items, function() {
-          self.nextUrl = self.getNextUrl(data);
+          
 
           self.resume();
         });
