@@ -32,7 +32,11 @@ var IASTriggerExtension = function(options) {
     if (false === this.offset || ++this.count < this.offset) {
       return true;
     }
-
+    
+    if (!this.ias.nextUrl) {
+        return true;
+    }
+    
     var $trigger = this.$triggerNext || (this.$triggerNext = this.createTrigger(this.next, this.html));
     var $lastItem = this.ias.getLastItem();
 
