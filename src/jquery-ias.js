@@ -243,6 +243,16 @@
           if (callback) {
             callback();
           }
+          setTimeout(function() {
+            if (!self.nextUrl) {
+                self.fire('noneLeft', [self.getLastItem()]);
+                self.listeners['noneLeft'].disable(); // disable it so it only fires once
+
+                self.resume();
+
+                return false;
+              }
+          }, 1);
         });
       });
       
